@@ -1,0 +1,35 @@
+{
+  "name": "tobeit-69",
+  "version": "0.0.1",
+  "description": "Tobeit 69 discord bot w/ assembly (joking)",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "goon": "bun --watch index.ts",
+    "dev": "bun --watch index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NunoiEnter/ToBeIT-69.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NunoiEnter/ToBeIT-69/issues"
+  },
+  "homepage": "https://github.com/NunoiEnter/ToBeIT-69#readme",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "canvas": "^3.2.0",
+    "discord.js": "^14.22.1",
+    "dotenv": "^17.2.2"
+  }
+}
