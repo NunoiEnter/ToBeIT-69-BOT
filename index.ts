@@ -1,9 +1,18 @@
-import { Client, GatewayIntentBits, Partials } from "discord.js";
-import "dotenv/config";
+import {
+  Client,
+  Collection,
+  Events,
+  GatewayIntentBits,
+  Partials,
+  REST,
+  Routes,
+} from "discord.js";
+import * as dotenv from "dotenv";
 import config from "./config.ts";
 import { setupGuildMemberAdd } from "./func/welcome.ts";
-import { createRulesEmbed } from "./func/rules.ts";
+import * as rules from "./func/rules.ts";
 
+dotenv.config();
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -12,7 +21,11 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
   ],
   partials: [Partials.Channel, Partials.GuildMember],
-});
+}) as Client & { commands: Collection<string, any> };
+client.commands = new Collection();
+client.commands.set(rules.data.name, rules);
+
+const token = process.env.DISCORD_TOKEN;
 
 setupGuildMemberAdd(client);
 
@@ -25,17 +38,45 @@ client.on("messageCreate", async (msg) => {
     if (command === "ping") {
       await msg.channel.send("🏓 Pong!");
     } else if (command === "rules") {
-      // Pass the bot's avatar URL for the thumbnail
-      const embed = createRulesEmbed(client.user?.displayAvatarURL() || "");
-      await msg.channel.send({ embeds: [embed] });
+      return;
     }
   } catch (error) {
     console.error(`Error processing command "${command}":`, error);
   }
 });
 
-client.once("ready", () => {
-  console.log(`Bot is online! Logged in as ${client.user?.tag}`);
+client.on(Events.InteractionCreate, async (interaction) => {
+  if (!interaction.isChatInputCommand()) return;
+
+  const command = client.commands.get(interaction.commandName);
+
+  if (!command) return;
+
+  try {
+    await command.execute(interaction);
+  } catch (error) {
+    console.error(error);
+    await interaction.reply({
+      content: "There was an error while executing this command!",
+      ephemeral: true,
+    });
+  }
 });
 
-client.login(config.botToken);
+client.once(Events.ClientReady, async (c) => {
+  console.log(`Bot is online! Logged in as ${client.user?.tag}`);
+
+  const rest = new REST().setToken(token!);
+  try {
+    console.log("Refreshing commands");
+    await rest.put(
+      Routes.applicationGuildCommands(c.user.id, "1412844099568140410"),
+      { body: client.commands.map((cmd) => cmd.data) },
+    );
+    console.log("Commands refreshed");
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+client.login(token);

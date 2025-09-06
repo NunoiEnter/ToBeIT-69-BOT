@@ -1,4 +1,3 @@
-// config.ts
 const config = {
   prefix: "!",
   botToken: process.env.BOT_TOKEN,

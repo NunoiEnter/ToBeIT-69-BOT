@@ -33,13 +33,14 @@ export function setupGuildMemberAdd(client: Client) {
           `No accessible channel to welcome ${member.user.tag}`,
         );
 
+      // THIS FUNCTION IS WAITING FOR AUTO TO BE MAKING CHANGE.
       const attachment = await createWelcomeBanner(
-        member.user.username,
-        member.user.displayAvatarURL({ extension: "png" }),
-        // config.welcomeText, // now exists
-        // config.emblemText || "🌟", // optional emblem text
-        member.guild.name,
-        config.welcomeBackground, // PNG background
+        member.user.username, // name of user 
+        member.user.displayAvatarURL({ extension: "png" }), // user profile (dont change)
+        "niga welcome", // welcome
+        "🌟", // top title
+        member.guild.name, // bottom title
+        './assets/bg.png', // PNG background (dont change)
       );
 
       await channel.send({

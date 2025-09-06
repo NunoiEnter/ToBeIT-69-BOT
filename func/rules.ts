@@ -1,7 +1,12 @@
-import { EmbedBuilder } from "discord.js";
+import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 
-export function createRulesEmbed(botAvatarURL: string) {
-  return new EmbedBuilder()
+export const data = new SlashCommandBuilder()
+  .setName("rules")
+  .setDescription("ดูระเบียบกิจกรรม");
+
+export async function execute(interaction: ChatInputCommandInteraction) {
+  const botAvatarURL = interaction.client.user?.displayAvatarURL();
+  const embed = new EmbedBuilder()
     .setColor(0x0099ff)
     .setTitle("⭐️ Policy Chat/Discord/Facebook")
     .setDescription(
@@ -15,5 +20,7 @@ export function createRulesEmbed(botAvatarURL: string) {
         "8. ให้ความเคารพแก่เพื่อนร่วมค่าย พี่ๆ สตาฟฟ์ ทั้งในด้านเชื้อชาติ ศาสนา ความเชื่อ ถิ่นกำเนิดและเพศ",
     )
     .setFooter({ text: "ToBelT'69" })
-    .setThumbnail(botAvatarURL); // <-- small image top-right
+    .setThumbnail(botAvatarURL || ""); // <-- small image top-right
+
+    await interaction.reply({ embeds: [embed] });
 }
