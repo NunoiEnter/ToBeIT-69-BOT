@@ -11,7 +11,7 @@ import * as dotenv from "dotenv";
 import config from "./config.ts";
 import { setupGuildMemberAdd } from "./func/welcome.ts";
 import * as rules from "./func/rules.ts";
-
+import * as verify from "./func/verify.ts";
 dotenv.config();
 const client = new Client({
   intents: [
@@ -24,6 +24,8 @@ const client = new Client({
 }) as Client & { commands: Collection<string, any> };
 client.commands = new Collection();
 client.commands.set(rules.data.name, rules);
+client.commands.set(verify.data.name, verify);
+
 
 const token = process.env.DISCORD_TOKEN;
 
