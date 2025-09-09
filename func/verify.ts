@@ -11,6 +11,11 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
     await interaction.deferReply({ ephemeral: false });
 
+    if (member?.roles.cache.has('1415036639159255100')) {
+        await interaction.editReply({ content: "คุณได้ยืนยันตัวตนไปแล้ว" });
+        return;
+    }
+
     const user = await getUserByDiscordId(discord_id);
     if (!user) {
         await interaction.editReply({ content: "คุณไม่มีสิทธิ์ใช้งานคำสั่งนี้" });
@@ -19,8 +24,14 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
     const role = await interaction.guild?.roles.fetch('1415036639159255100');
     if (role && member) {
-        await member.roles.add(role);
-        await member.setNickname(`น้อง ${user.firstname} ${user.grade} ${user.region}`);
+        try {
+            await member.roles.add(role);
+            await member.setNickname(`น้อง ${user.firstname} ${user.grade} ${user.region}`);
+        } catch (error) {
+            console.error('Permission error:', error);
+            await interaction.editReply({ content: "คุณไม่มีสิทธิ์ใช้งานคำสั่งนี้" });
+            return;
+        }
     }
 
     const successEmbed = new EmbedBuilder()
