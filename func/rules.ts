@@ -1,8 +1,9 @@
-import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
+import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, PermissionFlagsBits } from 'discord.js';
 
 export const data = new SlashCommandBuilder()
   .setName("rules")
-  .setDescription("ดูระเบียบกิจกรรม");
+  .setDescription("ดูระเบียบกิจกรรม")
+  .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
 
 export async function execute(interaction: ChatInputCommandInteraction) {
   const botAvatarURL = interaction.client.user?.displayAvatarURL();
