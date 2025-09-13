@@ -8,9 +8,9 @@ export async function getUserByDiscordId(discordId: string) {
             "Authorization": `Bearer ${process.env.API_KEY}`,
         },
     });
-    const data = await response.json() as PersonalData;
+    const data = await response.json() as PersonalData | { error: string };
     console.log(data);
-    if (!data) {
+    if (!data || (data as { error: string }).error) {
         return null;
     }
 
