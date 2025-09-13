@@ -1,5 +1,4 @@
-import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder, Role } from 'discord.js';
-import db from '../db/db';
+import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import { getUserByDiscordId } from '../api/get-discord';
 export const data = new SlashCommandBuilder()
     .setName("verify")
@@ -26,7 +25,13 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     if (role && member) {
         try {
             await member.roles.add(role);
-            await member.setNickname(`น้อง ${user.firstname} ${user.grade} ${user.region}`);
+            let regionDisplay = user.region;
+            if (user.region === 'ภาคตะวันออกเฉียงเหนือ') {
+                regionDisplay = 'ภาคอีสาน';
+            } else if (user.region === 'กรุงเทพและปริมณฑล') {
+                regionDisplay = 'กรุงเทพ';
+            }
+            await member.setNickname(`น้อง ${user.firstName} ${user.grade} ${regionDisplay}`);
         } catch (error) {
             console.error('Permission error:', error);
             await interaction.editReply({ content: "คุณไม่มีสิทธิ์ใช้งานคำสั่งนี้" });
@@ -38,8 +43,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         .setColor(0x00ff00)
         .setTitle('✅ ยืนยันตัวตนสำเร็จแล้ว')
         .setDescription([
-            `> 💳 **น้อง :** ${user.nickname}`,
-            `> 👤 **ชื่อในระบบ :** ${user.firstname}`,
+            `> 💳 **น้อง :** ${user.nickName}`,
+            `> 👤 **ชื่อในระบบ :** ${user.firstName}`,
             `> 🎓 **ระดับชั้น :** ${user.grade}`,
             `> 🏷️ **ภาค :** ${user.region}`,
             `> 🎺 **ได้รับยศ :** <@&1415036639159255100>`

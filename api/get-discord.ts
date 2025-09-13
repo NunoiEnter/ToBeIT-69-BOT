@@ -10,7 +10,7 @@ export async function getUserByDiscordId(discordId: string) {
     });
     const data = await response.json() as PersonalData;
     console.log(data);
-    if (!data || !data.id) {
+    if (!data) {
         return null;
     }
 
