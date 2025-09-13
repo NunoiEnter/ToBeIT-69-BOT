@@ -9,7 +9,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     const discord_id = interaction.user.id;
     const member = await interaction.guild?.members.fetch(discord_id);
 
-    await interaction.deferReply({ ephemeral: false });
+    await interaction.deferReply({ ephemeral: true });
 
     if (member?.roles.cache.has('1416465814692823220')) {
         await interaction.editReply({ content: "คุณได้ยืนยันตัวตนไปแล้ว" });
