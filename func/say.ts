@@ -25,7 +25,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
             message,
         )
         .setFooter({ text: user.username })
-        .setThumbnail(user.displayAvatarURL() || ""); // <-- small image top-right
+        .setThumbnail((interaction.client.user?.displayAvatarURL() || "") || ""); // <-- small image top-right
 
     await (channel as TextChannel).send({ embeds: [embed] });
+    await interaction.reply({ content: "พูดไปแล้วจ้า", ephemeral: true });
 }
