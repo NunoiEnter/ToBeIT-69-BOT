@@ -3,6 +3,7 @@ import {
   ChatInputCommandInteraction,
   EmbedBuilder,
   TextChannel,
+  Role,
 } from "discord.js";
 
 export const data = new SlashCommandBuilder()
@@ -19,6 +20,18 @@ export const data = new SlashCommandBuilder()
   );
 
 export async function execute(interaction: ChatInputCommandInteraction) {
+  // Check user role if not staff return
+  const user = interaction.user;
+  const member = interaction.guild?.members.cache.get(user.id);
+  const staffRole = interaction.guild?.roles.cache.find(role => role.name.toLowerCase() === "staff") as Role;
+  if (!staffRole || !member?.roles.cache.has(staffRole.id)) {
+    await interaction.reply({
+      content: "คุณไม่มีสิทธิ์ใช้งานคำสั่งนี้",
+      ephemeral: true,
+    });
+    return;
+  }
+
   const channel = interaction.options.getChannel("channel", true);
   const message = interaction.options.getString("message", true);
   const title = interaction.options.getString("title") || "TobeIT'69";
