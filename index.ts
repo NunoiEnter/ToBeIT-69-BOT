@@ -71,10 +71,16 @@ client.once(Events.ClientReady, async (c) => {
   const rest = new REST().setToken(token!);
   try {
     console.log("Refreshing commands");
-    await rest.put(
-      Routes.applicationGuildCommands(c.user.id, "1412844099568140410"),
-      { body: client.commands.map((cmd) => cmd.data) },
-    );
+    const guilds = [
+      "1412756673470402634",
+      "1412844099568140410",
+    ]
+    for (const guild of guilds) {
+      await rest.put(
+        Routes.applicationGuildCommands(c.user.id, guild),
+        { body: client.commands.map((cmd) => cmd.data) },
+      );
+    }
     console.log("Commands refreshed");
   } catch (error) {
     console.error(error);

@@ -85,7 +85,7 @@ export async function createWelcomeBanner(
   if (serverName) {
     ctx.fillStyle = "#eeeeee";
     ctx.font = "28px Sans";
-    ctx.fillText(`on ${serverName}`, width / 2, avatarY + avatarSize + 90);
+    ctx.fillText(`${serverName}`, width / 2, avatarY + avatarSize + 90);
   }
 
   return new AttachmentBuilder(canvas.toBuffer("image/png"), {
