@@ -10,7 +10,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
     await interaction.deferReply({ ephemeral: false });
 
-    if (member?.roles.cache.has('1415036639159255100')) {
+    if (member?.roles.cache.has('1416465814692823220')) {
         await interaction.editReply({ content: "คุณได้ยืนยันตัวตนไปแล้ว" });
         return;
     }
@@ -21,7 +21,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         return;
     }
 
-    const role = await interaction.guild?.roles.fetch('1415036639159255100');
+    const role = await interaction.guild?.roles.fetch('1416465814692823220');
     if (role && member) {
         try {
             await member.roles.add(role);
@@ -47,7 +47,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
             `> 👤 **ชื่อในระบบ :** ${user.firstName}`,
             `> 🎓 **ระดับชั้น :** ${user.grade}`,
             `> 🏷️ **ภาค :** ${user.region}`,
-            `> 🎺 **ได้รับยศ :** <@&1415036639159255100>`
+            `> 🎺 **ได้รับยศ :** <@&1416465814692823220>`
         ].join('\n'))
         .setThumbnail(interaction.user.displayAvatarURL())
         .setTimestamp()
