@@ -72,7 +72,7 @@ client.once(Events.ClientReady, async (c) => {
   try {
     console.log("Refreshing commands");
     const guilds = [
-      "1412756673470402634",
+      // "1412756673470402634",
       "1412844099568140410",
     ]
     for (const guild of guilds) {

@@ -1,5 +1,5 @@
 import { Client, GuildMember, TextChannel } from "discord.js";
-import { createWelcomeBanner } from "../utils/canvas.js";
+import { createWelcomeBanner, registerCustomFont } from "../utils/canvas.js";
 import config from "../config.ts";
 
 function getWelcomeChannel(member: GuildMember): TextChannel | null {
@@ -33,14 +33,18 @@ export function setupGuildMemberAdd(client: Client) {
           `No accessible channel to welcome ${member.user.tag}`,
         );
 
+      // Register Font
+      registerCustomFont("./assets/JS-Chusri-Normal.ttf", "js-chusri");
+
       // THIS FUNCTION IS WAITING FOR AUTO TO BE MAKING CHANGE.
       const attachment = await createWelcomeBanner(
         member.user.username, // name of user 
         member.user.displayAvatarURL({ extension: "png" }), // user profile (dont change)
-        "น้อง", // welcome
+        "", // welcome
         "ยินดีต้อนรับ", // top title
-        "สู่ห้วงลึกแห่งกาลเวลา🕰️", // bottom title
+        "สู่ห้วงลึกแห่งกาลเวลา", // bottom title
         './assets/bg.png', // PNG background (dont change)
+        "js-chusri"
       );
 
       await channel.send({
