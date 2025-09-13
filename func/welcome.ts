@@ -37,14 +37,14 @@ export function setupGuildMemberAdd(client: Client) {
       const attachment = await createWelcomeBanner(
         member.user.username, // name of user 
         member.user.displayAvatarURL({ extension: "png" }), // user profile (dont change)
-        "niga welcome", // welcome
-        "🌟", // top title
-        member.guild.name, // bottom title
+        "น้อง", // welcome
+        "ยินดีต้อนรับ", // top title
+        "สู่ห้วงลึกแห่งกาลเวลา🕰️", // bottom title
         './assets/bg.png', // PNG background (dont change)
       );
 
       await channel.send({
-        content: `🎉 ยินดีต้อนรับ <@${member.id}> สู่โลกแห่ง....!`,
+        content: `🕰️ ยินดีต้อนรับ <@${member.id}> สู่ห้วงลึกแห่งกาลเวลา! 📻 `,
         files: [attachment],
       });
     } catch (err) {
