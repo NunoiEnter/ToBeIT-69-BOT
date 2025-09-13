@@ -12,7 +12,7 @@ export const data = new SlashCommandBuilder()
     option.setName("channel").setDescription("ช่องที่จะพูด").setRequired(true)
   )
   .addStringOption((option) =>
-    option.setName("title").setDescription("หัวข้อ").setRequired(false)
+    option.setName("title").setDescription("หัวข้อ").setRequired(true)
   )
   .addStringOption((option) =>
     option.setName("message").setDescription("คำว่า").setRequired(true)
