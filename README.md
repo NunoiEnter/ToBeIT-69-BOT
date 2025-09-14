@@ -22,7 +22,6 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Arch_Linux_%22Crystal%22_icon.svg/1200px-Arch_Linux_%22Crystal%22_icon.svg.png" alt="Arch" width="60"/>
   <!-- Hyprland -->
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8eA__Qr06WXBMBB-jIozkzix5JtsBX_n7w&s" alt="Hyprland" width="60"/>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8eA__Qr06WXBMBB-jIozkzix5JtsBX_n7w&s" alt="Hyprland" width="60"/>
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Gentoo_Linux_logo_matte.svg/978px-Gentoo_Linux_logo_matte.svg.png" alt="Hyprland" width="60"/>  
   <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Hyprland_logo.png" alt="Hyprland" width="60"/>
 </p>
