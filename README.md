@@ -14,7 +14,12 @@
 </p>
 
 ## 🌟 OS & DE & WM Used
-<img src="https://avatars.githubusercontent.com/u/121677241?s=280&v=4" alt="arch" width="60"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Hyprland_logo.png" alt="arch" width="60"/>
+
+  <!-- Go -->
+  <img src="https://avatars.githubusercontent.com/u/121677241?s=280&v=4" alt="arch" alt="Go" width="60"/>
+  <!-- C -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Hyprland_logo.png" alt="C" width="60"/>
+
+
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=NunoiEnter&layout=compact)
