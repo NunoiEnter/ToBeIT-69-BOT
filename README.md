@@ -14,7 +14,7 @@
 </p>
 
 ## 🌟 OS & DE & WM Used
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Arch_Linux_%22Crystal%22_icon.svg/1200px-Arch_Linux_%22Crystal%22_icon.svg" alt="arch" width="60"/>
+<img src="https://avatars.githubusercontent.com/u/121677241?s=280&v=4" alt="arch" width="60"/>
 <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Hyprland_logo.png" alt="arch" width="60"/>
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=NunoiEnter&layout=compact)
