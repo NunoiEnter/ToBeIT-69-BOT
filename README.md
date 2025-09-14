@@ -1,6 +1,4 @@
 # Tobeit 69 discord bot 
-# w/ assembly , holy C , rust , GO , C
-# ToBeIT-69-BOT
 
 ## 🖥 Languages Used
 
