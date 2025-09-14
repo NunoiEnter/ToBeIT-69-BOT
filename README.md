@@ -15,8 +15,6 @@
 
 ## 🌟 OS & DE & WM Used
 
-## 🌟 OS & DE & WM Used
-
 <p align="left">
   <!-- Arch -->
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Arch_Linux_%22Crystal%22_icon.svg/1200px-Arch_Linux_%22Crystal%22_icon.svg.png" alt="Arch" width="60"/>
