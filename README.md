@@ -15,10 +15,14 @@
 
 ## 🌟 OS & DE & WM Used
 
+## 🌟 OS & DE & WM Used
+
+<p align="left">
   <!-- Arch -->
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Arch_Linux_%22Crystal%22_icon.svg/1200px-Arch_Linux_%22Crystal%22_icon.svg.png" alt="arch" alt="Go" width="60"/>
-  <!-- Hypr -->
-  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Hyprland_logo.png" alt="C" width="60"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Arch_Linux_%22Crystal%22_icon.svg/1200px-Arch_Linux_%22Crystal%22_icon.svg.png" alt="Arch" width="60"/>
+  <!-- Hyprland -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Hyprland_logo.png" alt="Hyprland" width="60"/>
+</p>
 
 
 
