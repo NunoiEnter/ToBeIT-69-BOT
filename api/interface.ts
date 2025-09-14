@@ -23,3 +23,10 @@ export interface PersonalData {
   instagramUrl: string;
   discordId: string;
 }
+
+export interface PersonalDataResponse {
+  nickName: string,
+  firstName: string,
+  grade: string,
+  region: string,
+}

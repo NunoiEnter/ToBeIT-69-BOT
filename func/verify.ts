@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import { getUserByDiscordId } from '../api/get-discord';
-import type { PersonalData } from '../api/interface';
+import type { PersonalDataResponse } from '../api/interface';
 export const data = new SlashCommandBuilder()
     .setName("verify")
     .setDescription("ยืนยันตัวตน");
@@ -16,7 +16,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         return;
     }
 
-    const user = await getUserByDiscordId(discord_id) as PersonalData;
+    const user = await getUserByDiscordId(discord_id) as PersonalDataResponse;
     if (!user) {
         await interaction.editReply({ content: "คุณไม่มีสิทธิ์ใช้งานคำสั่งนี้ เนื่องจากไม่มีชื่อในระบบ ❌" });
         return;

@@ -1,4 +1,4 @@
-import type { PersonalData } from "./interface.ts";
+import type { PersonalDataResponse } from "./interface.ts";
 
 export async function getUserByDiscordId(discordId: string) {
     const response = await fetch(`${process.env.API_URL}/api/discord/get-user?discord_id=${discordId}`, {
@@ -8,7 +8,7 @@ export async function getUserByDiscordId(discordId: string) {
             "Authorization": `Bearer ${process.env.API_KEY}`,
         },
     });
-    const data = await response.json() as PersonalData | { error: string };
+    const data = await response.json() as PersonalDataResponse | { error: string };
     console.log(data);
     if (!data || (data as { error: string }).error) {
         return null;
