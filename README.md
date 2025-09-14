@@ -1,12 +1,15 @@
-# Tobeit 69 discord bot 
+# ToBeIT-69-BOT
 
 ## 🖥 Languages Used
 
-![Assembly](https://img.shields.io/badge/Assembly-808080?logo=asm&logoColor=white)
-![HolyC](https://img.shields.io/badge/HolyC-lightgrey?logo=templeos&logoColor=white)
-![Rust](https://img.shields.io/badge/Rust-orange?logo=rust&logoColor=white)
-![Go](https://img.shields.io/badge/Go-00ADD8?logo=go&logoColor=white)
-![C](https://img.shields.io/badge/C-00599C?logo=c&logoColor=white)
+<p align="left">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/assembly/assembly-original.svg" alt="Assembly" width="60" height="60"/>
+  <img src="https://raw.githubusercontent.com/TempleOSCommunity/holyC-logo/main/holyc.png" alt="HolyC" width="60" height="60"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rust/rust-plain.svg" alt="Rust" width="60" height="60"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/go/go-original.svg" alt="Go" width="60" height="60"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="C" width="60" height="60"/>
+</p>
+
 
  
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=NunoiEnter&layout=compact)
