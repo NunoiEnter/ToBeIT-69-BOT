@@ -3,11 +3,16 @@
 ## 🖥 Languages Used
 
 <p align="left">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/assembly/assembly-original.svg" alt="Assembly" width="60" height="60"/>
-  <img src="https://raw.githubusercontent.com/TempleOSCommunity/holyC-logo/main/holyc.png" alt="HolyC" width="60" height="60"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rust/rust-plain.svg" alt="Rust" width="60" height="60"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/go/go-original.svg" alt="Go" width="60" height="60"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="C" width="60" height="60"/>
+  <!-- Assembly -->
+  <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/gnuemacs.svg" alt="Assembly" width="60"/>
+  <!-- HolyC (TempleOS logo) -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/TempleOS_logo.png" alt="HolyC" width="60"/>
+  <!-- Rust -->
+  <img src="https://www.rust-lang.org/logos/rust-logo-512x512.png" alt="Rust" width="60"/>
+  <!-- Go -->
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/go/go-original.svg" alt="Go" width="60"/>
+  <!-- C -->
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="C" width="60"/>
 </p>
 
 
