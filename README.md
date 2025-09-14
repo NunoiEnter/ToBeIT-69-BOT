@@ -1,11 +1,13 @@
+
+
 # ToBeIT-69-BOT
 
 ## 🖥 Languages Used
 
 <p align="left">
-  <!-- Assembly -->
-  <img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/gnuemacs.svg" alt="Assembly" width="60"/>
-  <!-- HolyC (TempleOS logo) -->
+  <!-- Assembly (white version) -->
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/assembly/assembly-original.svg" alt="Assembly" width="60"/>
+  <!-- HolyC (TempleOS cross) -->
   <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/TempleOS_logo.png" alt="HolyC" width="60"/>
   <!-- Rust -->
   <img src="https://www.rust-lang.org/logos/rust-logo-512x512.png" alt="Rust" width="60"/>
@@ -14,6 +16,7 @@
   <!-- C -->
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="C" width="60"/>
 </p>
+
 
 
  
