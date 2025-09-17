@@ -31,7 +31,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
             } else if (user.region === 'กรุงเทพและปริมณฑล') {
                 regionDisplay = 'กรุงเทพ';
             }
-            await member.setNickname(`น้อง ${user.firstName} ${user.grade} ${regionDisplay}`);
+            await member.setNickname(`น้อง ${user.nickName} ${user.grade} ${regionDisplay}`);
         } catch (error) {
             console.error('Permission error:', error);
             await interaction.editReply({ content: "คุณไม่มีสิทธิ์ใช้งานคำสั่งนี้" });
@@ -49,7 +49,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
             `> 🏷️ **ภาค :** ${user.region}`,
             `> 🎺 **ได้รับยศ :** <@&1416465814692823220>`
         ].join('\n'))
-        .setThumbnail(interaction.user.displayAvatarURL())
+        .setThumbnail(member?.user.displayAvatarURL() || null)
         .setTimestamp()
         .setFooter({
             text: '🔐 verify system',

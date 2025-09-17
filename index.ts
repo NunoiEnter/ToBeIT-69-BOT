@@ -14,7 +14,7 @@ import * as rules from "./func/rules.ts";
 import * as verify from "./func/verify.ts";
 import * as say from "./func/say.ts";
 import * as forceVerify from "./func/force-verify.ts";
-
+import * as fixNames from "./func/fix-names.ts";
 dotenv.config();
 const client = new Client({
   intents: [
@@ -30,7 +30,7 @@ client.commands.set(rules.data.name, rules);
 client.commands.set(verify.data.name, verify);
 client.commands.set(say.data.name, say);
 client.commands.set(forceVerify.data.name, forceVerify)
-
+client.commands.set(fixNames.data.name, fixNames)
 
 const token = process.env.DISCORD_TOKEN;
 
