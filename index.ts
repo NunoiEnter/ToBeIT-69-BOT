@@ -10,6 +10,7 @@ import {
 import * as dotenv from "dotenv";
 import config from "./config.ts";
 import { setupGuildMemberAdd } from "./func/welcome.ts";
+import { initializeFonts } from "./utils/canvas.js";
 import * as rules from "./func/rules.ts";
 import * as verify from "./func/verify.ts";
 import * as say from "./func/say.ts";
@@ -72,6 +73,11 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
 client.once(Events.ClientReady, async (c) => {
   console.log(`Bot is online! Logged in as ${client.user?.tag}`);
+  
+  // Initialize fonts once on startup to prevent memory leaks
+  console.log('Initializing fonts...');
+  initializeFonts();
+  console.log('Fonts initialized successfully');
 
   const rest = new REST().setToken(token!);
   try {

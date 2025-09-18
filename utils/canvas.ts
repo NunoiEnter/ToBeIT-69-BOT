@@ -2,14 +2,91 @@ import { createCanvas, loadImage, registerFont } from "canvas";
 import { AttachmentBuilder } from "discord.js";
 import * as path from "path";
 
+// Font registration tracking
+const registeredFonts = new Set<string>();
+
+// Image cache to prevent memory leaks
+const imageCache = new Map<string, any>();
+const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
+const MAX_CACHE_SIZE = 50;
+
+interface CachedImage {
+  image: any;
+  timestamp: number;
+}
+
+// Clean up expired cache entries
+function cleanupImageCache() {
+  const now = Date.now();
+  for (const [key, cached] of imageCache.entries()) {
+    if (now - cached.timestamp > CACHE_TTL) {
+      imageCache.delete(key);
+    }
+  }
+  
+  // If cache is still too large, remove oldest entries
+  if (imageCache.size > MAX_CACHE_SIZE) {
+    const sortedEntries = Array.from(imageCache.entries())
+      .sort((a, b) => a[1].timestamp - b[1].timestamp);
+    
+    const toRemove = sortedEntries.slice(0, imageCache.size - MAX_CACHE_SIZE);
+    for (const [key] of toRemove) {
+      imageCache.delete(key);
+    }
+  }
+}
+
+// Load image with caching and timeout
+async function loadImageWithCache(url: string, timeoutMs: number = 10000): Promise<any> {
+  // Clean up cache periodically
+  if (Math.random() < 0.1) { // 10% chance to clean up
+    cleanupImageCache();
+  }
+  
+  // Check cache first
+  const cached = imageCache.get(url);
+  if (cached && (Date.now() - cached.timestamp) < CACHE_TTL) {
+    return cached.image;
+  }
+  
+  // Load image with timeout
+  const loadPromise = loadImage(url);
+  const timeoutPromise = new Promise((_, reject) => {
+    setTimeout(() => reject(new Error(`Image load timeout: ${url}`)), timeoutMs);
+  });
+  
+  try {
+    const image = await Promise.race([loadPromise, timeoutPromise]);
+    
+    // Cache the loaded image
+    imageCache.set(url, {
+      image,
+      timestamp: Date.now()
+    });
+    
+    return image;
+  } catch (error) {
+    console.error(`Failed to load image ${url}:`, error);
+    throw error;
+  }
+}
+
 /**
- * Registers a custom font for use in canvas
+ * Registers a custom font for use in canvas (only once per font)
  * @param fontPath - Path to the font file (TTF, OTF, etc.)
  * @param fontFamily - Name to reference the font by
  */
 export function registerCustomFont(fontPath: string, fontFamily: string) {
+  const fontKey = `${fontFamily}:${fontPath}`;
+  
+  // Skip if already registered
+  if (registeredFonts.has(fontKey)) {
+    return;
+  }
+  
   try {
     registerFont(fontPath, { family: fontFamily, weight: "bold", style: "normal" });
+    registeredFonts.add(fontKey);
     console.log(`Font registered: ${fontFamily} from ${fontPath}`);
   } catch (error) {
     console.error(`Failed to register font ${fontFamily}:`, error);
@@ -17,10 +94,34 @@ export function registerCustomFont(fontPath: string, fontFamily: string) {
 }
 
 /**
- * Automatically registers the Thai font for the project
+ * Automatically registers all fonts for the project
+ * Call this once during application startup
  */
 export function initializeFonts() {
   registerCustomFont("./assets/JS-Chusri-Normal.ttf", "JS-Chusri");
+  registerCustomFont("./assets/JS-Chusri-Normal.ttf", "js-chusri"); // Alternative name used in welcome.ts
+}
+
+/**
+ * Clear image cache (useful for memory management)
+ */
+export function clearImageCache() {
+  imageCache.clear();
+  console.log('Image cache cleared');
+}
+
+/**
+ * Get cache statistics
+ */
+export function getCacheStats() {
+  return {
+    imageCache: {
+      size: imageCache.size,
+      maxSize: MAX_CACHE_SIZE,
+      ttl: CACHE_TTL
+    },
+    registeredFonts: registeredFonts.size
+  };
 }
 
 /**
@@ -54,8 +155,15 @@ export async function createWelcomeBanner(
 
   // ===== Background =====
   if (backgroundURL) {
-    const bg = await loadImage(backgroundURL);
-    ctx.drawImage(bg, 0, 0, width, height);
+    try {
+      const bg = await loadImageWithCache(backgroundURL);
+      ctx.drawImage(bg, 0, 0, width, height);
+    } catch (error) {
+      console.error('Failed to load background image, using fallback:', error);
+      // fallback to solid color
+      ctx.fillStyle = "#2c2f33";
+      ctx.fillRect(0, 0, width, height);
+    }
   } else {
     // fallback to solid color
     ctx.fillStyle = "#2c2f33";
@@ -104,7 +212,26 @@ export async function createWelcomeBanner(
   ctx.fillText(emblemText, width / 2, 70);
 
   // ===== Avatar (centered) =====
-  const avatar = await loadImage(avatarURL);
+  let avatar;
+  try {
+    avatar = await loadImageWithCache(avatarURL);
+  } catch (error) {
+    console.error('Failed to load avatar, using default:', error);
+    // Create a default avatar (simple circle)
+    const defaultCanvas = createCanvas(150, 150);
+    const defaultCtx = defaultCanvas.getContext('2d');
+    defaultCtx.fillStyle = '#7289da';
+    defaultCtx.beginPath();
+    defaultCtx.arc(75, 75, 75, 0, Math.PI * 2);
+    defaultCtx.fill();
+    defaultCtx.fillStyle = '#ffffff';
+    defaultCtx.font = '60px Sans';
+    defaultCtx.textAlign = 'center';
+    defaultCtx.textBaseline = 'middle';
+    defaultCtx.fillText('?', 75, 75);
+    avatar = defaultCanvas;
+  }
+  
   const avatarSize = 150; // change avatar size here
   const avatarX = width / 2 - avatarSize / 2; // horizontal center
   const avatarY = height / 2 - avatarSize / 2 - 20; // vertical position

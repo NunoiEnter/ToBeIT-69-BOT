@@ -18,7 +18,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
     const user = await getUserByDiscordId(discord_id) as PersonalDataResponse;
     if (!user) {
-        await interaction.editReply({ content: "คุณไม่มีสิทธิ์ใช้งานคำสั่งนี้ เนื่องจากไม่มีชื่อในระบบ ❌" });
+        await interaction.editReply({ content: "คุณไม่มีสิทธิ์ใช้งานคำสั่งนี้ เนื่องจากไม่มีชื่อในระบบ ❌ น้องๆได้เชื่อม Discord เดียวกับในเว็บหรือเปล่าเอ่ย" });
         return;
     }
 
