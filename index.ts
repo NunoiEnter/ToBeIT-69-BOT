@@ -31,7 +31,7 @@ client.commands.set(rules.data.name, rules);
 client.commands.set(verify.data.name, verify);
 client.commands.set(say.data.name, say);
 client.commands.set(forceVerify.data.name, forceVerify)
-client.commands.set(fixNames.data.name, fixNames)
+// client.commands.set(fixNames.data.name, fixNames)
 
 const token = process.env.DISCORD_TOKEN;
 
